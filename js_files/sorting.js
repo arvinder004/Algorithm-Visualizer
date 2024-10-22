@@ -6,6 +6,10 @@ function swap(el1, el2) {
     el1.style.height = el2.style.height;
     el2.style.height = temp;
     
+    let temp1 = el1.innerHTML;
+    el1.innerHTML = el2.innerHTML;
+    el2.sinnerHTML = temp1;
+    
 }
 
 // Disables sorting buttons used in conjunction with enable, so that we can disable during sorting and enable buttons after it
@@ -81,16 +85,16 @@ let array = [];
 createNewArray();
 
 // To create new array input size of array
-function createNewArray(noOfBars = 60) {
+function createNewArray(noOfBars = 20) {
     // calling helper function to delete old bars from dom
     deleteChild();
 
     // creating an array of random numbers 
-    array = [];
-    for (let i = 0; i < noOfBars; i++) {
-        array.push(Math.floor(Math.random() * 250) + 1);
-    }
-    console.log(array);
+    array = [10,40,90,30,110];
+    // for (let i = 0; i < noOfBars; i++) {
+    //     array.push(Math.floor(Math.random() * 250) + 1);
+    // }
+    // console.log(array);
 
     // select the div #bars element
     const bars = document.querySelector("#bars");
@@ -98,11 +102,17 @@ function createNewArray(noOfBars = 60) {
     // create multiple element div using loop and adding class 'bar col'
     for (let i = 0; i < noOfBars; i++) {
         const bar = document.createElement("div");
+        bar.innerHTML = array[i];
+        bar.style.color = 'black';
+        bar.style.fontSize = '0.5rem';
         bar.style.height = `${array[i]*2}px`;
+        bar.style.width = '2rem'
         bar.classList.add('bar');
         bar.classList.add('flex-item');
         bar.classList.add(`barNo${i}`);
+        
         bars.appendChild(bar);
+        
     }
 }
 
